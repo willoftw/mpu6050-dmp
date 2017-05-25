@@ -132,9 +132,9 @@ void *readFromFIFO(void *ypr_void_ptr) {
       mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);  
       mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
-      ypr_ptr[10] = aaReal.x;
-      ypr_ptr[11] = aaReal.y;
-      ypr_ptr[12] = aaReal.z;
+      ypr_ptr[10] = aaWorld.x;
+      ypr_ptr[11] = aaWorld.y;
+      ypr_ptr[12] = aaWorld.z;
       ;
       //printf("ypr  %7.2f %7.2f %7.2f\n", ypr[0] * 180/M_PI, ypr[1] * 180/M_PI, ypr[2] * 180/M_PI);
       ypr_ptr[0] = ypr[0] * 180/M_PI;
@@ -152,9 +152,9 @@ void *readFromFIFO(void *ypr_void_ptr) {
       rotation[2] = (ypr_ptr[2] - last_ypr[2]) / (float)delta.count();
 
 
-      accel[0] = (ypr_ptr[10] - last_ypr[10]) / (float)delta.count();	
-      accel[1] = (ypr_ptr[11] - last_ypr[11]) / (float)delta.count();
-      accel[2] = (ypr_ptr[12] - last_ypr[12]) / (float)delta.count();
+      accel[0] = (ypr_ptr[10] - last_xyz[0]) / (float)delta.count();	
+      accel[1] = (ypr_ptr[11] - last_xyz[1]) / (float)delta.count();
+      accel[2] = (ypr_ptr[12] - last_xyz[2]) / (float)delta.count();
 
       ypr_ptr[3] = rotation[0];
       ypr_ptr[4] = rotation[1];
