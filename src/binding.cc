@@ -95,7 +95,9 @@ bool initMPU() {
 void *readFromFIFO(void *ypr_void_ptr) {
   float *ypr_ptr = (float *)ypr_void_ptr;
   float rotation[3] = {0};
+  float accel[3] = {0};
   float last_ypr[3] = {0};
+  float last_xyz[3] = {0};
 
   high_resolution_clock::time_point last_read = high_resolution_clock::now();
   high_resolution_clock::time_point current_read; 
@@ -149,6 +151,11 @@ void *readFromFIFO(void *ypr_void_ptr) {
       rotation[1] = (ypr_ptr[1] - last_ypr[1]) / (float)delta.count();
       rotation[2] = (ypr_ptr[2] - last_ypr[2]) / (float)delta.count();
 
+
+      aceel[0] = (ypr_ptr[10] - last_ypr[10]) / (float)delta.count();	
+      accel[1] = (ypr_ptr[11] - last_ypr[11]) / (float)delta.count();
+      accel[2] = (ypr_ptr[12] - last_ypr[12]) / (float)delta.count();
+
       ypr_ptr[3] = rotation[0];
       ypr_ptr[4] = rotation[1];
       ypr_ptr[5] = rotation[2];
@@ -157,6 +164,10 @@ void *readFromFIFO(void *ypr_void_ptr) {
       last_ypr[0] = ypr_ptr[0];
       last_ypr[1] = ypr_ptr[1];
       last_ypr[2] = ypr_ptr[2];
+      last_xyz[0] = ypr_ptr[10];
+      last_xyz[1] = ypr_ptr[11];
+      last_xyz[2] = ypr_ptr[1
+      2];
 
 
     }
