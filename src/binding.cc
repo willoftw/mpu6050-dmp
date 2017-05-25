@@ -156,10 +156,15 @@ void *readFromFIFO(void *ypr_void_ptr) {
       accel[1] = (ypr_ptr[11] - last_xyz[1]) / (float)delta.count();
       accel[2] = (ypr_ptr[12] - last_xyz[2]) / (float)delta.count();
 
+
       ypr_ptr[3] = rotation[0];
       ypr_ptr[4] = rotation[1];
       ypr_ptr[5] = rotation[2];
 
+      last_xyz[0] = ypr_ptr[10];
+      last_xyz[1] = ypr_ptr[11];
+      last_xyz[2] = ypr_ptr[12];
+      
       ypr_ptr[10] = accel[0];
       ypr_ptr[11] = accel[1];
       ypr_ptr[12] = accel[2];
@@ -168,9 +173,8 @@ void *readFromFIFO(void *ypr_void_ptr) {
       last_ypr[0] = ypr_ptr[0];
       last_ypr[1] = ypr_ptr[1];
       last_ypr[2] = ypr_ptr[2];
-      last_xyz[0] = ypr_ptr[10];
-      last_xyz[1] = ypr_ptr[11];
-      last_xyz[2] = ypr_ptr[12];
+
+
 
 
 
