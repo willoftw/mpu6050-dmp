@@ -128,7 +128,7 @@ void *readFromFIFO(void *ypr_void_ptr) {
       mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
       mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);  
       mpu.dmpGetAccel(&aa, fifoBuffer);
-      mpu.dmpGetLinearAccelInWorld(aaWorld, &aaReal, &q);
+      mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
       ypr_ptr[10] = aaWorld[0];
       ypr_ptr[11] = aaWorld[1];
