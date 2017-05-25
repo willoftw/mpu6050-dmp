@@ -6,17 +6,17 @@ using namespace std::chrono;
 
 NAN_METHOD(GetAttitude) {
   v8::Local<v8::Object> obj = Nan::New<v8::Object>();
-  Nan::Set(obj, Nan::New("roll").ToLocalChecked(), Nan::New(data_out[1]));
-  Nan::Set(obj, Nan::New("pitch").ToLocalChecked(), Nan::New(data_out[2]));
-  Nan::Set(obj, Nan::New("yaw").ToLocalChecked(), Nan::New(data_out[0]));
+  Nan::Set(obj, Nan::New("x").ToLocalChecked(), Nan::New(data_out[1]));
+  Nan::Set(obj, Nan::New("y").ToLocalChecked(), Nan::New(data_out[2]));
+  Nan::Set(obj, Nan::New("z").ToLocalChecked(), Nan::New(data_out[0]));
   info.GetReturnValue().Set(obj);
 }
 
 NAN_METHOD(GetRotation) {
   v8::Local<v8::Object> obj = Nan::New<v8::Object>();
-  Nan::Set(obj, Nan::New("roll").ToLocalChecked(), Nan::New(data_out[3]));
-  Nan::Set(obj, Nan::New("pitch").ToLocalChecked(), Nan::New(data_out[4]));
-  Nan::Set(obj, Nan::New("yaw").ToLocalChecked(), Nan::New(data_out[5]));
+  Nan::Set(obj, Nan::New("x").ToLocalChecked(), Nan::New(data_out[3]));
+  Nan::Set(obj, Nan::New("y").ToLocalChecked(), Nan::New(data_out[4]));
+  Nan::Set(obj, Nan::New("z").ToLocalChecked(), Nan::New(data_out[5]));
   info.GetReturnValue().Set(obj);
 }
 
