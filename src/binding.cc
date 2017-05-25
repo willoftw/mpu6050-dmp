@@ -22,9 +22,9 @@ NAN_METHOD(GetRotation) {
 
 NAN_METHOD(getWorldAccel) {
   v8::Local<v8::Object> obj = Nan::New<v8::Object>();
-  Nan::Set(obj, Nan::New("x").ToLocalChecked(), Nan::New(data_out[3]));
-  Nan::Set(obj, Nan::New("y").ToLocalChecked(), Nan::New(data_out[4]));
-  Nan::Set(obj, Nan::New("z").ToLocalChecked(), Nan::New(data_out[5]));
+  Nan::Set(obj, Nan::New("x").ToLocalChecked(), Nan::New(data_out[10]));
+  Nan::Set(obj, Nan::New("y").ToLocalChecked(), Nan::New(data_out[11]));
+  Nan::Set(obj, Nan::New("z").ToLocalChecked(), Nan::New(data_out[12]));
   info.GetReturnValue().Set(obj);
 }
 
@@ -130,9 +130,9 @@ void *readFromFIFO(void *ypr_void_ptr) {
       mpu.dmpGetAccel(&aa, fifoBuffer);
       mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
-      ypr_ptr[10] = 1;
-      ypr_ptr[11] = 1;
-      ypr_ptr[12] = 1;
+      ypr_ptr[10] = aaWorld.x;
+      ypr_ptr[11] = aaWorld.y;
+      ypr_ptr[12] = aaWorld.z;
       ;
       //printf("ypr  %7.2f %7.2f %7.2f\n", ypr[0] * 180/M_PI, ypr[1] * 180/M_PI, ypr[2] * 180/M_PI);
       ypr_ptr[0] = ypr[0] * 180/M_PI;
