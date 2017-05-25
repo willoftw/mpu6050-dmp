@@ -172,6 +172,8 @@ NAN_MODULE_INIT(InitAll) {
     Nan::GetFunction(Nan::New<FunctionTemplate>(GetRotation)).ToLocalChecked());
   Nan::Set(target, Nan::New("getQuaternion").ToLocalChecked(),
     Nan::GetFunction(Nan::New<FunctionTemplate>(GetQuaternion)).ToLocalChecked());
+  Nan::Set(target, Nan::New("getWorldAccel").ToLocalChecked(),
+    Nan::GetFunction(Nan::New<FunctionTemplate>(getWorldAccel)).ToLocalChecked());
   Nan::Set(target, Nan::New("initialize").ToLocalChecked(),
     Nan::GetFunction(Nan::New<FunctionTemplate>(Initialize)).ToLocalChecked());
 }
