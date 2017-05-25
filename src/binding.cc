@@ -162,7 +162,7 @@ void *readFromFIFO(void *ypr_void_ptr) {
 
       ypr_ptr[10] = accel[0];
       ypr_ptr[11] = accel[1];
-      ypr_ptr[12] = accel[2]
+      ypr_ptr[12] = accel[2];
 
       last_read = current_read;
       last_ypr[0] = ypr_ptr[0];
