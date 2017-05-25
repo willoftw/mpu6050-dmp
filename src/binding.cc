@@ -166,8 +166,8 @@ void *readFromFIFO(void *ypr_void_ptr) {
       last_ypr[2] = ypr_ptr[2];
       last_xyz[0] = ypr_ptr[10];
       last_xyz[1] = ypr_ptr[11];
-      last_xyz[2] = ypr_ptr[1
-      2];
+      last_xyz[2] = ypr_ptr[12];
+
 
 
     }
