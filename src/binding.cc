@@ -145,13 +145,13 @@ void *readFromFIFO(void *ypr_void_ptr) {
 
       //ypr_ptr[3] = (float)delta.count();
 
-      rotation[0] = (ypr_ptr[0] - last_ypr[0]) / (float)delta.count();	
-      rotation[1] = (ypr_ptr[1] - last_ypr[1]) / (float)delta.count();
-      rotation[2] = (ypr_ptr[2] - last_ypr[2]) / (float)delta.count();
+      // rotation[0] = (ypr_ptr[0] - last_ypr[0]) / (float)delta.count();	
+      // rotation[1] = (ypr_ptr[1] - last_ypr[1]) / (float)delta.count();
+      // rotation[2] = (ypr_ptr[2] - last_ypr[2]) / (float)delta.count();
 
-      ypr_ptr[3] = rotation[0];
-      ypr_ptr[4] = rotation[1];
-      ypr_ptr[5] = rotation[2];
+      // ypr_ptr[3] = rotation[0];
+      // ypr_ptr[4] = rotation[1];
+      // ypr_ptr[5] = rotation[2];
 
       last_read = current_read;
       last_ypr[0] = ypr_ptr[0];
