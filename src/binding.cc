@@ -19,6 +19,14 @@ NAN_METHOD(GetRotation) {
   info.GetReturnValue().Set(obj);
 }
 
+NAN_METHOD(getWorldAccel) {
+  v8::Local<v8::Object> obj = Nan::New<v8::Object>();
+  Nan::Set(obj, Nan::New("x").ToLocalChecked(), Nan::New(data_out[3]));
+  Nan::Set(obj, Nan::New("y").ToLocalChecked(), Nan::New(data_out[4]));
+  Nan::Set(obj, Nan::New("z").ToLocalChecked(), Nan::New(data_out[5]));
+  info.GetReturnValue().Set(obj);
+}
+
 NAN_METHOD(GetQuaternion) {
   v8::Local<v8::Object> obj = Nan::New<v8::Object>();
   Nan::Set(obj, Nan::New("w").ToLocalChecked(), Nan::New(data_out[6]));
@@ -117,6 +125,13 @@ void *readFromFIFO(void *ypr_void_ptr) {
 			ypr_ptr[9] = q.z;
       mpu.dmpGetGravity(&gravity, &q);
       mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+      mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);  
+      mpu.dmpGetAccel(&aa, fifoBuffer);
+      mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
+
+      ypr_ptr[10] = aaWorld[0];
+      ypr_ptr[11] = aaWorld[1];
+      ypr_ptr[12] = aaWorld[2];
       //printf("ypr  %7.2f %7.2f %7.2f\n", ypr[0] * 180/M_PI, ypr[1] * 180/M_PI, ypr[2] * 180/M_PI);
       ypr_ptr[0] = ypr[0] * 180/M_PI;
       ypr_ptr[1] = ypr[1] * 180/M_PI;
@@ -140,6 +155,8 @@ void *readFromFIFO(void *ypr_void_ptr) {
       last_ypr[0] = ypr_ptr[0];
       last_ypr[1] = ypr_ptr[1];
       last_ypr[2] = ypr_ptr[2];
+
+
     }
   }
 

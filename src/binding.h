@@ -6,7 +6,7 @@
 
 NAN_METHOD(getAttitude);
 NAN_METHOD(getRotation);
-NAN_METHOD(getRotation);
+NAN_METHOD(getWorldAccel);
 NAN_METHOD(getQuaternion);
 NAN_METHOD(initialize);
 
