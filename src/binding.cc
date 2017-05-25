@@ -130,9 +130,9 @@ void *readFromFIFO(void *ypr_void_ptr) {
       mpu.dmpGetAccel(&aa, fifoBuffer);
       mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
-      ypr_ptr[10] = aa.x;
-      ypr_ptr[11] = aa.y;
-      ypr_ptr[12] = aa.z;
+      ypr_ptr[10] = 1;
+      ypr_ptr[11] = 1;
+      ypr_ptr[12] = 1;
       ;
       //printf("ypr  %7.2f %7.2f %7.2f\n", ypr[0] * 180/M_PI, ypr[1] * 180/M_PI, ypr[2] * 180/M_PI);
       ypr_ptr[0] = ypr[0] * 180/M_PI;
